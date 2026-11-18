@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cliente - Contagem de palavras-chave (MOM)</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <h1>Cliente - Contagem de palavras-chave (MOM)</h1>
+      <p class="sub">Escolha um arquivo e as palavras. Dois leitores (pares e impares) enviam as linhas para a fila.</p>
+    </div>
+    <div class="topo-dir">
+      <span id="ws" class="selo off">desconectado</span>
+      <a class="btn-link" href="http://localhost:3002" target="_blank" rel="noopener">Abrir dashboard</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="cartao">
+      <form id="form">
+        <label>Arquivo
+          <select id="arquivo" required><option value="">carregando...</option></select>
+        </label>
+        <label>Palavras-chave
+          <input id="palavras" type="text" placeholder="separe por virgula: dados, fila, paralela" autocomplete="off" required>
+        </label>
+        <button id="iniciar" type="submit">Iniciar</button>
+      </form>
+      <p id="erro" class="erro" hidden></p>
+    </section>
+
+    <section>
+      <h2>Jobs</h2>
+      <div id="jobs"><p class="vazio">Nenhum job ainda.</p></div>
+    </section>
+  </main>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

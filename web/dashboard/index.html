@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - Topico de Palavras</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="topo">
+      <div>
+        <h1>Dashboard - Topico de Palavras</h1>
+        <p class="sub">Contagem paralela de palavras-chave via RabbitMQ</p>
+      </div>
+      <div class="controles">
+        <span id="conexao" class="conexao off">desconectado</span>
+        <label>Job <select id="seletor"></select></label>
+      </div>
+    </header>
+
+    <main id="vazio" class="vazio">Nenhum job ainda. Inicie um pelo cliente (porta 3001).</main>
+
+    <main id="painel" hidden>
+      <section class="resumo">
+        <div><span class="rot">Arquivo</span><strong id="arquivo">-</strong></div>
+        <div><span class="rot">Tempo decorrido</span><strong id="tempo">0,0 s</strong></div>
+        <span id="selo" class="selo" hidden>Concluido</span>
+      </section>
+
+      <section class="progresso">
+        <div class="trilho"><div id="barra" class="barra"></div></div>
+        <p id="texto-progresso"></p>
+      </section>
+
+      <section id="cartoes" class="cartoes"></section>
+
+      <section>
+        <h2>Contadores (workers)</h2>
+        <div id="contadores" class="contadores"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

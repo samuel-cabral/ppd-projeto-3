@@ -1,0 +1,40 @@
+Processamento de dados em Paralela exige uma fila bem pensada.
+A programação distribuída usa mensagens e um broker confiável.
+O IFCE oferece a disciplina de Programação Paralela e Distribuída.
+Cada contador pega a próxima linha da fila e conta as palavras.
+DADOS chegam, dados saem, e a fila nunca para.
+Uma aplicação paralela divide o trabalho entre vários processos.
+A fila garante que cada linha seja entregue a um único contador.
+Sem programação cuidadosa, a contagem de dados fica errada.
+O tópico publica as contagens para o dashboard em tempo real.
+Paralela, paralela e PARALELA: a mesma palavra com caixas diferentes.
+Os leitores enviam linhas pares e ímpares para a fila de linhas.
+O broker RabbitMQ entrega mensagens com ack manual.
+Nada aqui casa com as palavras buscadas, só texto de enchimento.
+No IFCE, o aluno estuda fila, pilha e árvore em estruturas de dados.
+Banco de dados não é a mesma coisa que dados soltos; bancodados não conta.
+A programação funcional também aparece, mas sem a palavra dados.
+DADOS chegam, dados saem, e a fila nunca para.
+O IFCE oferece a disciplina de Programação Paralela e Distribuída.
+O tópico publica as contagens para o dashboard em tempo real.
+Cada contador pega a próxima linha da fila e conta as palavras.
+A programação funcional também aparece, mas sem a palavra dados.
+Banco de dados não é a mesma coisa que dados soltos; bancodados não conta.
+A programação funcional também aparece, mas sem a palavra dados.
+Nada aqui casa com as palavras buscadas, só texto de enchimento.
+A fila garante que cada linha seja entregue a um único contador.
+Cada contador pega a próxima linha da fila e conta as palavras.
+A programação funcional também aparece, mas sem a palavra dados.
+Processamento de dados em Paralela exige uma fila bem pensada.
+Nada aqui casa com as palavras buscadas, só texto de enchimento.
+No IFCE, o aluno estuda fila, pilha e árvore em estruturas de dados.
+Processamento de dados em Paralela exige uma fila bem pensada.
+Banco de dados não é a mesma coisa que dados soltos; bancodados não conta.
+O tópico publica as contagens para o dashboard em tempo real.
+Sem programação cuidadosa, a contagem de dados fica errada.
+Cada contador pega a próxima linha da fila e conta as palavras.
+Os leitores enviam linhas pares e ímpares para a fila de linhas.
+Processamento de dados em Paralela exige uma fila bem pensada.
+Processamento de dados em Paralela exige uma fila bem pensada.
+Processamento de dados em Paralela exige uma fila bem pensada.
+Processamento de dados em Paralela exige uma fila bem pensada.
