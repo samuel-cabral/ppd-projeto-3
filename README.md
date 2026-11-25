@@ -46,17 +46,17 @@ dashboard sabe que o job terminou.
 ## Pre-requisitos
 
 - Docker (Docker Desktop) para o RabbitMQ
-- Node 22 e npm
+- Node 22 e pnpm
 
 ## Como rodar
 
 ```bash
 docker compose up -d     # RabbitMQ (imagem rabbitmq:3-management)
-npm install
-npm start                # build das paginas, dashboard, 3 contadores e cliente
+pnpm install
+pnpm start                # build das paginas, dashboard, 3 contadores e cliente
 ```
 
-`npm start` ja executa `docker compose up -d --wait` e gera `dados/grande.txt` (100 mil linhas)
+`pnpm start` ja executa `docker compose up -d --wait` e gera `dados/grande.txt` (100 mil linhas)
 se ele nao existir, entao o `docker compose up -d` manual e opcional.
 
 | O que | URL |
@@ -67,28 +67,28 @@ se ele nao existir, entao o `docker compose up -d` manual e opcional.
 
 Uso: abra o dashboard, abra o cliente, escolha `grande.txt`, digite as palavras e clique em iniciar.
 
-Variaveis uteis: `CONTADORES=5 npm start` (quantos contadores), `ATRASO_MS=5` (atraso por linha
+Variaveis uteis: `CONTADORES=5 pnpm start` (quantos contadores), `ATRASO_MS=5` (atraso por linha
 no contador, para ver a distribuicao ao vivo), `PREFETCH=1`, `AMQP_URL`, `PORTA_CLIENTE`,
 `PORTA_DASHBOARD`.
 
 Subir um contador extra a qualquer momento (outro terminal):
 
 ```bash
-CONTADOR_ID=contador-4 npm run contador
+CONTADOR_ID=contador-4 pnpm contador
 ```
 
 Cliente pela linha de comando (sem navegador):
 
 ```bash
-npm run cliente:cli -- --arquivo exemplo.txt --palavras "dados, fila"
+pnpm cliente:cli --arquivo exemplo.txt --palavras "dados, fila"
 ```
 
 ## Como testar
 
 ```bash
-npm run typecheck
-npm test            # unitarios (vitest), nao precisam de broker
-npm run test:e2e    # ponta a ponta, precisa do RabbitMQ no ar
+pnpm typecheck
+pnpm test            # unitarios (vitest), nao precisam de broker
+pnpm test:e2e    # ponta a ponta, precisa do RabbitMQ no ar
 ```
 
 - `src/contador/contagem.test.ts`: contagem por palavra inteira, acento, caixa, repeticao.

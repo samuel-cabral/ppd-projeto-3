@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "MOM com RabbitMQ: contagem paralela de palavras-chave (PPD Projeto 3, IFCE)",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node scripts/start.mjs",
     "infra": "docker compose up -d",
@@ -30,5 +32,11 @@
     "typescript": "^5.5.4",
     "vite": "^5.4.2",
     "vitest": "^2.0.5"
+  },
+  "packageManager": "pnpm@10.5.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

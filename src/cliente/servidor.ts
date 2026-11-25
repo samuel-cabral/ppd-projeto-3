@@ -47,7 +47,7 @@ function lerCorpo(req: IncomingMessage): Promise<string> {
 async function estatico(url: string, res: ServerResponse): Promise<void> {
   if (!existsSync(DIR_WEB)) {
     res.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8' });
-    res.end('Paginas nao encontradas. Rode: npm run build:web');
+    res.end('Paginas nao encontradas. Rode: pnpm build:web');
     return;
   }
   let caminho = join(DIR_WEB, normalize(decodeURIComponent(url)));

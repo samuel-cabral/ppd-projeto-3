@@ -12,7 +12,7 @@ function passo(cmd, args) {
   }
 }
 
-passo('npx', ['vite', 'build']);
+passo('pnpm', ['exec', 'vite', 'build']);
 // --wait espera o healthcheck: os processos ja encontram o broker pronto.
 passo('docker', ['compose', 'up', '-d', '--wait']);
 if (!existsSync('dados/grande.txt')) passo('node', ['scripts/gerar-arquivo.mjs', '--linhas', '100000']);
