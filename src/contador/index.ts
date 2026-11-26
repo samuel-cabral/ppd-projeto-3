@@ -23,7 +23,7 @@ await declararTopologia(ch);
 await ch.prefetch(PREFETCH);
 
 let processadas = 0;
-
+let encerrando = false; // vira true no Ctrl+C: para de publicar antes de fechar o canal
 async function tratar(msg: ConsumeMessage | null): Promise<void> {
   if (!msg) return; // consumidor cancelado pelo broker
   let linha: MensagemLinha;
@@ -40,7 +40,7 @@ async function tratar(msg: ConsumeMessage | null): Promise<void> {
 
   // Atraso artificial, so para mostrar ao vivo a distribuicao entre contadores.
   if (ATRASO_MS > 0) await new Promise((r) => setTimeout(r, ATRASO_MS));
-
+  if (encerrando) return; // sem ack: ao fechar o canal, o RabbitMQ devolve a linha para a fila
   // Publica SEMPRE, mesmo com {}: o dashboard mede o progresso contando parciais.
   const parcial: ContagemParcial = { tipo: 'contagem', jobId, contadorId: id, numeroLinha: numero, contagens };
   ch.publish(EXCHANGE_PALAVRAS, RK_CONTAGEM, Buffer.from(JSON.stringify(parcial)));
@@ -52,12 +52,19 @@ async function tratar(msg: ConsumeMessage | null): Promise<void> {
   if (++processadas % 1000 === 0) console.log(`[${id}] ${processadas} linhas processadas`);
 }
 
-await ch.consume(FILA_LINHAS, (msg) => void tratar(msg), { noAck: false });
+const { consumerTag } = await ch.consume(FILA_LINHAS, (msg) => void tratar(msg), { noAck: false });
 console.log(`[${id}] aguardando linhas em ${FILA_LINHAS} (prefetch=${PREFETCH})`);
 
+// Encerramento limpo: para de receber, deixa de publicar e so entao fecha o canal.
+// Fechar com uma linha no meio do processamento fazia o publish usar um canal fechado
+// (IllegalOperationError). A linha que ficou sem ack volta para a fila.
 async function encerrar(): Promise<void> {
-  await ch.close();
-  await conn.close();
+  if (encerrando) return;
+  encerrando = true;
+  await ch.cancel(consumerTag).catch(() => {});
+  await ch.close().catch(() => {});
+  await conn.close().catch(() => {});
+  console.log(`[${id}] encerrado; ${processadas} linhas processadas`);
   process.exit(0);
 }
 process.on('SIGINT', () => void encerrar());
